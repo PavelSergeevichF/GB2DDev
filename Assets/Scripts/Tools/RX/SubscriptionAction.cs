@@ -1,18 +1,18 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+using System;
 
-public class SubscriptionAction : MonoBehaviour
+public class SubscriptionAction : IReadOnlySubscriptionAction
 {
-    // Start is called before the first frame update
-    void Start()
+    private Action _action;
+    public void Invoke()
     {
-        
+        _action?.Invoke();
     }
-
-    // Update is called once per frame
-    void Update()
+    public void SubscribeOnChange(Action subscriptionAction)
     {
-        
+        _action += subscriptionAction;
+    }
+    public void UnSubscriptionOnChange(Action unsubscriptionAction)
+    {
+        _action -= unsubscriptionAction;
     }
 }

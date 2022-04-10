@@ -1,4 +1,3 @@
-
 using System;
 
 public class SubscriptionProperty<T> : IReadOnlySubscriptionProperty<T>

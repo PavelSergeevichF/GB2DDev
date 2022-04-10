@@ -6,4 +6,8 @@ public class ResourceLoader
     {
         return Resources.Load<GameObject>(path.PathResource);
     }
+    public static Sprite LoadSprite(ResourcePath path)
+    {
+        return Resources.Load<Sprite>(path.PathResource);
+    }
 }

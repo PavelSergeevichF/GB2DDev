@@ -10,6 +10,6 @@ public class PlayerData
     {
         Car = new Car(1f);
         GameState = new SubscriptionProperty<GameState>();
-        GameState.Value = global::GameState.Nome;
+        GameState.Value = global::GameState.None;
     }
 }

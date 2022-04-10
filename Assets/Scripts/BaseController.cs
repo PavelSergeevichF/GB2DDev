@@ -25,6 +25,7 @@ public class BaseController : IDisposable
         OnDispose();
         foreach(var go in _gameObject)
         {
+            if(go != null)
             GameObject.Destroy(go);
         }
         _gameObject.Clear();
