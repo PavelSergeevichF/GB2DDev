@@ -4,6 +4,7 @@ using UnityEngine.UI;
 
 public class MainMenuView : MonoBehaviour
 {
+    [SerializeField]
     private Button _startButton;
     public void Init(UnityAction start)
     {

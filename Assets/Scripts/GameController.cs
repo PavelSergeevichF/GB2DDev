@@ -8,8 +8,9 @@
     public GameController(PlayerData model)
     {
         _model = model;
+        var movement = new SubscriptionProperty<float>();
         _car = new CarController();
-        _input = new InputController();
-        _background = new BackgroundController();
+        _input = new InputController(movement);
+        _background = new BackgroundController(movement);
     }
 }
