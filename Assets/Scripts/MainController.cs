@@ -5,11 +5,13 @@ public class MainController : BaseController
 {
     private readonly PlayerData _model;
     private readonly Transform _uiRoot;
+    private readonly IAdsShower ads;
     private BaseController _currentController;
-    public MainController(PlayerData model, Transform uiRoot)
+    public MainController(PlayerData model, Transform uiRoot , IAdsShower ads)
     {
         _model = model;
         _uiRoot = uiRoot;
+        this.ads = ads;
         _model.GameState.SubscribeOnChange(OnGameModelChanged);
         _model.GameState.Value = GameState.Menu;
     }
@@ -42,7 +44,7 @@ public class MainController : BaseController
     }
     private MainMenuController CreatMenuController()
     {
-        return new MainMenuController(_model, _uiRoot);
+        return new MainMenuController(_model, _uiRoot, ads);
     }
     protected override void OnDispose()
     {

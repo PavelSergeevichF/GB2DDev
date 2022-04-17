@@ -1,15 +1,17 @@
-﻿using UnityEngine;
+﻿using System.Collections.Generic;
+using UnityEngine;
 
 public class MainMenuController : BaseController
 {
     private readonly PlayerData _model;
     private readonly Transform _uiRoot;
+    private readonly IAdsShower ads;
 
-    public MainMenuController(PlayerData model, Transform uiRoot)
+    public MainMenuController(PlayerData model, Transform uiRoot, IAdsShower ads)
     {
         _model = model;
         _uiRoot = uiRoot;
-
+        this.ads = ads;
         CreateView();
     }
 
@@ -23,7 +25,7 @@ public class MainMenuController : BaseController
     }
     private MainMenuController CreateMenuController()
     {
-        return new MainMenuController(_model, _uiRoot);
+        return new MainMenuController(_model, _uiRoot, ads);
     }
     private GameController CreateGameController()
     {
@@ -31,6 +33,8 @@ public class MainMenuController : BaseController
     }
     private void StartGame()
     {
+        _model.Analytic.SendMessage("progression", new Dictionary<string, object>() { { "event_name", "game_start" } });
+        ads.ShowInterstitial();
         _model.GameState.Value = GameState.Game;
     }
 }
