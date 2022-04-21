@@ -2,7 +2,7 @@
 using UnityEngine;
 using UnityEngine.Advertisements;
 
-public class UnityAdsTools: MonoBehaviour, IUnityAdsListener, IAdsShower
+public class UnityAdsTools: MonoBehaviour, IAdsShower ,IUnityAdsListener
 {
     private const string InterstitialPlacement = "Interstitial_Android";
     private const string RewardedPlacement = "Rewarded_Android";
