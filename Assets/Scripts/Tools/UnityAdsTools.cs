@@ -2,17 +2,17 @@
 using UnityEngine;
 using UnityEngine.Advertisements;
 
-public class UnityAdsTools: MonoBehaviour, IAdsShower ,IUnityAdsListener
+public class UnityAdsTools: MonoBehaviour, IAdsShower ,IUnityAdsListener, IUnityAdsInitializationListener
 {
     private const string InterstitialPlacement = "Interstitial_Android";
     private const string RewardedPlacement = "Rewarded_Android";
-    private const string GameId = "4710222";
+    private const string GameId = "4723715";
     private bool _isReady = false;
 
     private Action _onRewardedFinish;
-
     public void Start()
     {
+        UnityAdsTools unityAdsTools = this;
         Advertisement.Initialize(GameId, true, true, this);
     }
     public void OnUnityAdsDidError(string message)
@@ -50,5 +50,15 @@ public class UnityAdsTools: MonoBehaviour, IAdsShower ,IUnityAdsListener
             return;
         Advertisement.Show(RewardedPlacement);
         _onRewardedFinish = successShow;
+    }
+
+    public void OnInitializationComplete()
+    {
+        
+    }
+
+    public void OnInitializationFailed(UnityAdsInitializationError error, string message)
+    {
+        Debug.LogError($"Error {message} :: {error.ToString()}");
     }
 }
